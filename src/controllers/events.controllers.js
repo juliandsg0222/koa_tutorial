@@ -14,7 +14,11 @@ const addEvent = async (ctx) => {
 const findEvent = async (ctx) => {
 	try {
 		const event = await Events.findByPk(ctx.params.id);
-		ctx.body = event;
+		if (event) {
+			ctx.body = event;
+		} else {
+			ctx.body = "Event doesn't exist";
+		}
 		ctx.status = 200;
 	} catch (err) {
 		ctx.body = err;
@@ -24,13 +28,19 @@ const findEvent = async (ctx) => {
 
 const deleteEvent = async (ctx) => {
 	try {
-		await Events.destroy({
-			where: {
-				id: ctx.params.id,
-			},
-		});
-		ctx.body = "Event Deleted";
-		ctx.status = 202;
+		const event = await Events.findByPk(ctx.params.id);
+		if (event) {
+			await Events.destroy({
+				where: {
+					id: ctx.params.id,
+				},
+			});
+			ctx.body = "Event Deleted";
+			ctx.status = 202;
+		} else {
+			ctx.body = "Event doesn't exist";
+			ctx.status = 200;
+		}
 	} catch (err) {
 		ctx.body = err;
 		ctx.status = 500;

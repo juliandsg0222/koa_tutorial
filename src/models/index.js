@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+require("dotenv").config();
 
 const settings = {
 	host: "localhost",
@@ -6,9 +7,9 @@ const settings = {
 };
 
 const sequelize = new Sequelize(
-	"koa_tutorial",
-	"db_user",
-	"db_password",
+	process.env.DATABASE_NAME,
+	process.env.DATABASE_USER,
+	process.env.DATABASE_PASSWORD,
 	settings
 );
 
