@@ -2,7 +2,7 @@ const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
 const settings = {
-	host: "localhost",
+	host: "0.0.0.0",
 	dialect: "postgres",
 };
 

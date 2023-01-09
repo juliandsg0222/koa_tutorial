@@ -11,5 +11,5 @@ App.use(parser())
 	.use(cors())
 	.use(router.routes())
 	.listen(PORT, () => {
-		console.log(`🚀 Server listening http://127.0.0.1:${PORT}/ 🚀`);
+		console.log(`🚀 Server listening through the ${PORT}/ port 🚀`);
 	});
