@@ -6,10 +6,12 @@ const settings = {
 	dialect: "postgres",
 };
 
+const { DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD } = process.env;
+
 const sequelize = new Sequelize(
-	process.env.DATABASE_NAME,
-	process.env.DATABASE_USER,
-	process.env.DATABASE_PASSWORD,
+	DATABASE_NAME,
+	DATABASE_USER,
+	DATABASE_PASSWORD,
 	settings
 );
 
